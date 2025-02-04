@@ -1,5 +1,4 @@
  // Start of Selection
-import ChartComponent from '../components/tv';
 import Footer from "../components/Footer/foot"
 import NavBar from "../components/Navbar/navBar"
 import Hero from "../components/Landing/hero"

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { createChart, AreaSeries, CandlestickSeries } from 'lightweight-charts';
+import { createChart,CandlestickSeries } from 'lightweight-charts';
 import Papa from 'papaparse';
 
 interface CandleData {
