@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { createChart,CandlestickSeries } from 'lightweight-charts';
+import { createChart,CandlestickSeries, ColorType  } from 'lightweight-charts';
 import Papa from 'papaparse';
 
 interface CandleData {
@@ -56,7 +56,7 @@ export default function ChartComponent() {
     const chartOptions = {
       layout: {
         textColor: 'black',
-        background: { type: 'solid', color: 'white' },
+        background: { type:  ColorType.Solid, color: 'white' },
       },
     };
     const chart = createChart(chartContainerRef.current, chartOptions);
