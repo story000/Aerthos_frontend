@@ -24,7 +24,7 @@ export default function ChartComponent() {
       download: true,
       header: true,
       dynamicTyping: true,
-      complete: (result) => {
+      complete: (result: Papa.ParseResult<any>) => {
         const parsedData = result.data as any[];
         
         const formattedData: CandleData[] = parsedData
