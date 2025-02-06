@@ -6,9 +6,6 @@ import ChartComponent from "./tv";
 import Papa from "papaparse";
 import ArticlesSection from "./ArticlesSection";
 import SignalTable from "./SignalTable";
-import { createClient } from '@supabase/supabase-js';
-import SubscribeModal from "./subscribe";
-const supabase = createClient('https://biwrubftuzrcdhpqkojr.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpd3J1YmZ0dXpyY2RocHFrb2pyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg2Mzk5ODYsImV4cCI6MjA1NDIxNTk4Nn0.jBbqgoAbYydIy0YXVCmVYAqWCUGLVyDhfvQdR4TT0uQ');
 
 type Signal = {
     name: string;
@@ -130,7 +127,7 @@ const Hero: React.FC = () => {
             <div className="relative w-full h-[300px]">
                 <img src="pics/forest.jpg" alt="forest" className="w-full h-full object-cover" />
                 <h1 className="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold drop-shadow-lg">
-                    Welcome to Our Climate Initiative
+                To the future where sustainability drives global prosperity
                 </h1>
             </div>
 
@@ -144,11 +141,71 @@ const Hero: React.FC = () => {
             
             <div className="my-6"></div>
             <div className="my-6"></div>
-            <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-8">Our services</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-16">Our services</h2>
 
-            <h1 className="text-3xl font-bold font-mono  px-4 md:px-8">Carbon Price & Predictions </h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-16 py-12 md:px-16">
+                {/* Card 1 */}
+                <div className="relative rounded-lg overflow-hidden shadow-lg group">
+                    <img src="ele/wallstreet.jpg" alt="Carbon Trading" className="w-full h-60 object-cover" />
+                    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300"></div>
+                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                        <h2 className="text-2xl font-bold">Carbon Trading</h2>
+                        <p className="mt-2 text-sm">
+                            We support you to comply with EU, CH, or UK ETS schemes as well as to achieve carbon neutrality and the UN sustainable development goals.
+                        </p>
+                        <a href="#" className="mt-4 font-semibold underline">Read More</a>
+                    </div>
+                </div>
 
-            <div className="flex justify-between w-full px-4 md:px-8" >
+                {/* Card 2 */}
+                <div className="relative rounded-lg overflow-hidden shadow-lg group">
+                    <img src="ele/energy.jpg" alt="Renewable Energy" className="w-full h-60 object-cover" />
+                    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300"></div>
+                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                        <h2 className="text-2xl font-bold">Investment Adviser</h2>
+                        <p className="mt-2 text-sm">
+                        Empower businesses and investors with tools that simplify carbon compliance, mitigate 
+                        financial risks, and unlock the potential of the carbon economy. 
+                        </p>
+                        <a href="#" className="mt-4 font-semibold underline">Read More</a>
+                    </div>
+                </div>
+
+                {/* Card 3 */}
+                <div className="relative rounded-lg overflow-hidden shadow-lg group">
+                    <img src="ele/smoke.jpg" alt="Climate Solutions" className="w-full h-60 object-cover" />
+                    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300"></div>
+                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                        <h2 className="text-2xl font-bold">All-in-One Platform</h2>
+                        <p className="mt-2 text-sm">
+                        Bridge the global climate finance gap by creating transformative platforms for industries, 
+                        governments, and individuals.
+                        </p>
+                        <a href="#" className="mt-4 font-semibold underline">Read More</a>
+                    </div>
+                </div>
+
+                {/* Card 4 */}
+                <div className="relative rounded-lg overflow-hidden shadow-lg group">
+                    <img src="ele/cooperation.jpg" alt="Projects" className="w-full h-60 object-cover" />
+                    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300"></div>
+                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                        <h2 className="text-2xl font-bold">Climate Solutions</h2>
+                        <p className="mt-2 text-sm">
+                            Together, we fight climate change by mitigating risks and setting sustainability goals for a net-zero future.
+                        </p>
+                        <a href="#" className="mt-4 font-semibold underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div className="my-6"></div>
+            <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-16">Free Version</h2>
+            <div className="my-6"></div> 
+
+            <h1 className="text-3xl font-bold font-mono  px-4 md:px-16">Carbon Price & Predictions </h1>
+
+            <div className="flex justify-between w-full px-4 md:px-16" >
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Daily Price Chart</h1>
                     <ChartComponent />
@@ -160,9 +217,9 @@ const Hero: React.FC = () => {
             </div>  
             
             <div className="my-6"></div>
-            <h1 className="text-3xl font-bold font-mono  px-4 md:px-8">Indicators & Suggestions</h1>
+            <h1 className="text-3xl font-bold font-mono  px-4 md:px-16">Indicators & Suggestions</h1>
 
-            <div className="flex justify-between w-full px-4 md:px-8">
+            <div className="flex justify-between w-full px-4 md:px-16">
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Indicators Dashboard</h1>
                     <img src="pics/indicators_dashboard.png" alt="Indicators Dashboard" className="w-full h-auto object-cover" />
@@ -177,15 +234,12 @@ const Hero: React.FC = () => {
                 </div>
             </div>
             
+           
+
             <ArticlesSection articles={articles} />
+            <div className="my-6"></div>
             
-            <button
-                className="btn btn-neutral hover:opacity-80 active:opacity-90 mt-6 text-2xl py-3 px-6"
-                onClick={() => setShowModal(true)}
-            >
-                Subscribe to our newsletter
-            </button>
-            {showModal && <SubscribeModal setShowModal={setShowModal} supabase={supabase} />}
+
             
         </div>
     );

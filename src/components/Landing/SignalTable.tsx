@@ -31,7 +31,7 @@ const SignalTable: React.FC<SignalTableProps> = ({ signals, suggestions, activeT
             </div>
 
             {activeTab === "indicators" ? (
-                <table className="table-auto border-collapse border border-gray-400 text-left w-1/2 mx-auto">
+                <table className="table-auto border-collapse border border-gray-400 text-left w-full mx-auto">
                     <tbody>
                         <tr>
                             <td className="border border-gray-400 px-4 py-1 font-bold" colSpan={2}>Composite Indicator</td>
