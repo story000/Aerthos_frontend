@@ -126,16 +126,26 @@ const Hero: React.FC = () => {
 
     return (
         
-        <div className="flex flex-col justify-center items-center gap-6 w-full">
-            <h1 className="text-3xl font-bold animate-pulse">Aerthos</h1>
-            <p className="px-[20%]">
-                <strong className="text-[20px]">Aerthos</strong> is a climate finance and technology startup dedicated to bridging the climate finance gap 
-                by providing innovative tools for carbon compliance, risk mitigation, and financial empowerment.
-            </p>
+        <div className="flex flex-col justify-center  gap-6 w-full">
+            <div className="relative w-full h-[300px]">
+                <img src="pics/forest.jpg" alt="forest" className="w-full h-full object-cover" />
+                <h1 className="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold drop-shadow-lg">
+                    Welcome to Our Climate Initiative
+                </h1>
+            </div>
 
-            <h1 className="text-3xl font-bold font-mono">Carbon Price & Predictions</h1>
+            <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-center leading-snug">
+                <p className="px-[20%]">
+                    Aerthos <strong className="text-[20px]">is a climate finance and technology startup dedicated to bridging the climate finance gap 
+                    by providing innovative tools for carbon compliance, risk mitigation, and financial empowerment.</strong>
+                </p>
+            </h2>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-8">Our services</h2>
 
-            <div className="flex justify-between w-full">
+            <h1 className="text-3xl font-bold font-mono  px-4 md:px-8">Carbon Price & Predictions </h1>
+
+            <div className="flex justify-between w-full px-4 md:px-8" >
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Daily Price Chart</h1>
                     <ChartComponent />
@@ -144,11 +154,12 @@ const Hero: React.FC = () => {
                     <h1 className="text-2xl font-bold text-center">Upcoming Forecast</h1>
                     <img src="pics/predictions_plot.png" alt="Trade Decision" className="w-full h-auto object-cover" />
                 </div>
-            </div>
+            </div>  
+            
+            <div className="my-6"></div>
+            <h1 className="text-3xl font-bold font-mono  px-4 md:px-8">Indicators & Suggestions</h1>
 
-            <h1 className="text-3xl font-bold font-mono">Indicators & Suggestions</h1>
-
-            <div className="flex justify-between w-full">
+            <div className="flex justify-between w-full px-4 md:px-8">
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Indicators Dashboard</h1>
                     <img src="pics/indicators_dashboard.png" alt="Indicators Dashboard" className="w-full h-auto object-cover" />

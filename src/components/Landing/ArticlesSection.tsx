@@ -9,8 +9,8 @@ interface ArticlesSectionProps {
 
 const ArticlesSection: React.FC<ArticlesSectionProps> = ({ articles }) => {
     return (
-        <div className="mt-8 w-full px-8">
-            <h2 className="text-xl font-bold text-center mb-4">News Articles</h2>
+        <div className="mt-8 w-full px-4 md:px-8">
+            <h2 className="text-3xl font-bold  mb-4">News Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {articles.map((article, index) => (
                     <div key={index} className="border border-gray-300 rounded-lg p-4 shadow-sm">
