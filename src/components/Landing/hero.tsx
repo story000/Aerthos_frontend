@@ -134,6 +134,7 @@ const Hero: React.FC = () => {
                 </h1>
             </div>
 
+            <div className="my-6"></div>
             <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-center leading-snug">
                 <p className="px-[20%]">
                     Aerthos <strong className="text-[20px]">is a climate finance and technology startup dedicated to bridging the climate finance gap 
@@ -141,6 +142,8 @@ const Hero: React.FC = () => {
                 </p>
             </h2>
             
+            <div className="my-6"></div>
+            <div className="my-6"></div>
             <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-8">Our services</h2>
 
             <h1 className="text-3xl font-bold font-mono  px-4 md:px-8">Carbon Price & Predictions </h1>
