@@ -180,7 +180,7 @@ const Hero: React.FC = () => {
             <ArticlesSection articles={articles} />
             
             <button
-                className="btn btn-neutral hover:opacity-80 active:opacity-90 mt-6"
+                className="btn btn-neutral hover:opacity-80 active:opacity-90 mt-6 text-2xl py-3 px-6"
                 onClick={() => setShowModal(true)}
             >
                 Subscribe to our newsletter
