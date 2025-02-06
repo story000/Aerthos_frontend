@@ -2,11 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import ChartComponent from "../tv";
-import ReactMarkdown from "react-markdown";
+import ChartComponent from "./tv";
 import Papa from "papaparse";
 import ArticlesSection from "./ArticlesSection";
 import SignalTable from "./SignalTable";
+import { createClient } from '@supabase/supabase-js';
+import SubscribeModal from "./subscribe";
+const supabase = createClient('https://biwrubftuzrcdhpqkojr.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpd3J1YmZ0dXpyY2RocHFrb2pyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg2Mzk5ODYsImV4cCI6MjA1NDIxNTk4Nn0.jBbqgoAbYydIy0YXVCmVYAqWCUGLVyDhfvQdR4TT0uQ');
 
 type Signal = {
     name: string;
@@ -25,77 +27,102 @@ const Hero: React.FC = () => {
     const router = useRouter();
     const [suggestions, setSuggestions] = useState("");
     const [signals, setSignals] = useState<Signal[]>([]);
+    const [showModal, setShowModal] = useState(false);
     const [activeTab, setActiveTab] = useState("indicators");
     const [articles, setArticles] = useState<Article[]>([]);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(true);
 
+    
     useEffect(() => {
-        // Fetch suggestions
-        fetch("pics/suggestions.txt")
-            .then((response) => {
-                if (!response.ok) throw new Error("Failed to load suggestions");
-                return response.text();
-            })
-            .then((data) => setSuggestions(data))
-            .catch((error) => console.error("Error loading suggestions:", error));
+        const timeout = setTimeout(() => setLoading(false), 2000);
+        fetchSuggestions();
+        fetchSignals();
+        fetchArticles();
 
-        // Fetch signals from CSV file
-        fetch("/pics/signals.csv")
-            .then((response) => {
-                if (!response.ok) throw new Error("Failed to load signals");
-                return response.text();
-            })
-            .then((csvData) => {
-                Papa.parse(csvData, {
-                    header: true,
-                    complete: (result) => {
-                        const lastRow = result.data[result.data.length - 2] as { 
-                            Composite_Signal?: string; 
-                            "7_Day_ADI_Signal"?: string; 
-                            "10_8_Day_Hilo_Channel_Signal"?: string; 
-                            "20_Day_MA_vs_Price_Signal"?: string; 
-                            "20-50_MA_Crossover_Signal"?: string; 
-                            "Bollinger_Bands_Signal"?: string; 
-                        };
-                        const formattedSignals = [
-                            { name: "Composite Signal", value: lastRow.Composite_Signal || "Hold", type: "composite" },
-                            { name: "7-Day ADI Signal", value: lastRow["7_Day_ADI_Signal"] || "Hold", type: "short-term" },
-                            { name: "10-8 Day Hilo Channel Signal", value: lastRow["10_8_Day_Hilo_Channel_Signal"] || "Hold", type: "short-term" },
-                            { name: "20-Day MA vs Price Signal", value: lastRow["20_Day_MA_vs_Price_Signal"] || "Hold", type: "short-term" },
-                            { name: "20-50 MA Crossover Signal", value: lastRow["20-50_MA_Crossover_Signal"] || "Hold", type: "short-term" },
-                            { name: "Bollinger Bands Signal", value: lastRow["Bollinger_Bands_Signal"] || "Hold", type: "short-term" }
-                        ];
-                        setSignals(formattedSignals);
-                    },
-                    error: (error: any) => console.error("Error parsing CSV:", error)
-                });
-            })
-            .catch((error: any) => console.error("Error loading signals:", error));
+        return () => clearTimeout(timeout);
 
-        // Fetch articles from opinions CSV file
-        fetch("/pics/opinions.csv")
-            .then((response) => {
-                if (!response.ok) throw new Error("Failed to load articles");
-                return response.text();
-            })
-            .then((csvData) => {
-                Papa.parse(csvData, {
-                    header: true,
-                    complete: (result) => {
-                        const formattedArticles = result.data
-                            .filter((row: any) => row.link.includes("https://")) 
-                            .map((row: any) => ({
-                                link: row.link,
-                                title: row.title,
-                                author: row.author,
-                                date: row.Date
-                            }));
-                        setArticles(formattedArticles);
-                    },
-                    error: (error: any) => console.error("Error parsing CSV:", error)
-                });
-            })
-            .catch((error: any) => console.error("Error loading articles:", error));
+        
     }, []);
+
+    const fetchSuggestions = async () => {
+        try {
+            const response = await fetch("pics/suggestions.txt");
+            if (!response.ok) throw new Error("Failed to load suggestions");
+            const data = await response.text();
+            setSuggestions(data);
+        } catch (error) {
+            console.error("Error loading suggestions:", error);
+        }
+    };
+
+    const fetchSignals = async () => {
+        try {
+            const response = await fetch("/pics/signals.csv");
+            if (!response.ok) throw new Error("Failed to load signals");
+            const csvData = await response.text();
+            Papa.parse(csvData, {
+                header: true,
+                complete: (result) => {
+                    const lastRow = result.data[result.data.length - 2] as { 
+                        Composite_Signal?: string; 
+                        "7_Day_ADI_Signal"?: string; 
+                        "10_8_Day_Hilo_Channel_Signal"?: string; 
+                        "20_Day_MA_vs_Price_Signal"?: string; 
+                        "20-50_MA_Crossover_Signal"?: string; 
+                        "Bollinger_Bands_Signal"?: string; 
+                    };
+                    const formattedSignals = [
+                        { name: "Composite Signal", value: lastRow.Composite_Signal || "Hold", type: "composite" },
+                        { name: "7-Day ADI Signal", value: lastRow["7_Day_ADI_Signal"] || "Hold", type: "short-term" },
+                        { name: "10-8 Day Hilo Channel Signal", value: lastRow["10_8_Day_Hilo_Channel_Signal"] || "Hold", type: "short-term" },
+                        { name: "20-Day MA vs Price Signal", value: lastRow["20_Day_MA_vs_Price_Signal"] || "Hold", type: "short-term" },
+                        { name: "20-50 MA Crossover Signal", value: lastRow["20-50_MA_Crossover_Signal"] || "Hold", type: "short-term" },
+                        { name: "Bollinger Bands Signal", value: lastRow["Bollinger_Bands_Signal"] || "Hold", type: "short-term" }
+                    ];
+                    setSignals(formattedSignals);
+                },
+                error: (error: any) => console.error("Error parsing CSV:", error)
+            });
+        } catch (error) {
+            console.error("Error loading signals:", error);
+        }
+    };
+
+    const fetchArticles = async () => {
+        try {
+            const response = await fetch("/pics/opinions.csv");
+            if (!response.ok) throw new Error("Failed to load articles");
+            const csvData = await response.text();
+            Papa.parse(csvData, {
+                header: true,
+                complete: (result) => {
+                    const formattedArticles = result.data
+                        .filter((row: any) => row.link.includes("https://")) 
+                        .map((row: any) => ({
+                            link: row.link,
+                            title: row.title,
+                            author: row.author,
+                            date: row.Date
+                        }));
+                    setArticles(formattedArticles);
+                },
+                error: (error: any) => console.error("Error parsing CSV:", error)
+            });
+        } catch (error) {
+            console.error("Error loading articles:", error);
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="fixed inset-0 flex items-center justify-center bg-black">
+                <h1 className="text-5xl font-bold text-white animate-pulse">Aerthos</h1>
+            </div>
+        );
+    }
+
 
     return (
         
@@ -115,7 +142,7 @@ const Hero: React.FC = () => {
                 </div>
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Upcoming Forecast</h1>
-                    <img src="pics/predictions_plot.png" alt="Trade Decision" className="h-[400px] object-cover" />
+                    <img src="pics/predictions_plot.png" alt="Trade Decision" className="w-full h-auto object-cover" />
                 </div>
             </div>
 
@@ -124,7 +151,7 @@ const Hero: React.FC = () => {
             <div className="flex justify-between w-full">
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Indicators Dashboard</h1>
-                    <img src="pics/indicators_dashboard.png" alt="Indicators Dashboard" className="h-[400px] object-cover" />
+                    <img src="pics/indicators_dashboard.png" alt="Indicators Dashboard" className="w-full h-auto object-cover" />
                 </div>
                 <div className="w-1/2 flex flex-col items-center">
                     <SignalTable
@@ -138,15 +165,14 @@ const Hero: React.FC = () => {
             
             <ArticlesSection articles={articles} />
             
-
             <button
                 className="btn btn-neutral hover:opacity-80 active:opacity-90 mt-6"
-                onClick={() => {
-                    router.push("/");
-                }}
+                onClick={() => setShowModal(true)}
             >
-                Contact Us
+                Subscribe to our newsletter
             </button>
+            {showModal && <SubscribeModal setShowModal={setShowModal} supabase={supabase} />}
+            
         </div>
     );
 };
