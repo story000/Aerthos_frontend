@@ -6,12 +6,25 @@ import ChartComponent from "../tv";
 import ReactMarkdown from "react-markdown";
 import Papa from "papaparse";
 
+type Signal = {
+    name: string;
+    value: string;
+    type: string;
+};
+
+type Article = {
+    link: string;
+    title: string;
+    author: string;
+    date: string;
+};
+
 const Hero: React.FC = () => {
     const router = useRouter();
     const [suggestions, setSuggestions] = useState("");
-    const [signals, setSignals] = useState([]);
+    const [signals, setSignals] = useState<Signal[]>([]);
     const [activeTab, setActiveTab] = useState("indicators");
-    const [articles, setArticles] = useState([]);
+    const [articles, setArticles] = useState<Article[]>([]);
 
     useEffect(() => {
         // Fetch suggestions
@@ -33,7 +46,14 @@ const Hero: React.FC = () => {
                 Papa.parse(csvData, {
                     header: true,
                     complete: (result) => {
-                        const lastRow = result.data[result.data.length - 2];
+                        const lastRow = result.data[result.data.length - 2] as { 
+                            Composite_Signal?: string; 
+                            "7_Day_ADI_Signal"?: string; 
+                            "10_8_Day_Hilo_Channel_Signal"?: string; 
+                            "20_Day_MA_vs_Price_Signal"?: string; 
+                            "20-50_MA_Crossover_Signal"?: string; 
+                            "Bollinger_Bands_Signal"?: string; 
+                        };
                         const formattedSignals = [
                             { name: "Composite Signal", value: lastRow.Composite_Signal || "Hold", type: "composite" },
                             { name: "7-Day ADI Signal", value: lastRow["7_Day_ADI_Signal"] || "Hold", type: "short-term" },
@@ -44,10 +64,10 @@ const Hero: React.FC = () => {
                         ];
                         setSignals(formattedSignals);
                     },
-                    error: (error) => console.error("Error parsing CSV:", error)
+                    error: (error: any) => console.error("Error parsing CSV:", error)
                 });
             })
-            .catch((error) => console.error("Error loading signals:", error));
+            .catch((error: any) => console.error("Error loading signals:", error));
 
         // Fetch articles from opinions CSV file
         fetch("/pics/opinions.csv")
