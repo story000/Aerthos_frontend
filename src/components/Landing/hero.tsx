@@ -238,6 +238,55 @@ const Hero: React.FC = () => {
 
             <ArticlesSection articles={articles} />
             <div className="my-6"></div>
+
+            <div className="my-6"></div>
+            <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-16">For Subscribers</h2>
+            <div className="my-6"></div> 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 px-16 py-12 bg-white">
+
+                {/* Firt part */}
+                <div className="h-[300px] lg:h-[400px] overflow-hidden rounded-lg">
+                    <img src="ele/path.jpg" alt="Dynamic Forecast Updates" className="w-full h-full object-cover" />
+                </div>
+
+                <div className="flex items-center bg-green-500 text-white p-8 rounded-lg">
+                    <div>
+                        <h3 className="text-2xl font-bold mb-4">Dynamic Forecast Updates</h3>
+                        <p>
+                        Access the most up-to-date and comprehensive market data, including real-time stock prices, financial news, and in-depth analysis to help you make informed investment decisions.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Second part */}
+                <div className="flex items-center bg-green-500 text-white p-8 rounded-lg">
+                    <div>
+                        <h3 className="text-2xl font-bold mb-4">Personalized Buy/Sell Signals</h3>
+                        <p>
+                        Customize buy/sell signals based your risk appetite and investment timeframe.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="h-[300px] lg:h-[400px] overflow-hidden rounded-lg">
+                    <img src="ele/building.jpg" alt="Personalized Buy/Sell Signals" className="w-full h-full object-cover" />
+                </div>
+
+                {/* Third part */}
+                <div className="h-[300px] lg:h-[400px] overflow-hidden rounded-lg">
+                    <img src="ele/email.jpg" alt="Push Notifications" className="w-full h-full object-cover" />
+                </div>
+
+                <div className="flex items-center bg-green-500 text-white p-8 rounded-lg">
+                    <div>
+                        <h3 className="text-2xl font-bold mb-4">Push Notifications</h3>
+                        <p>
+                         Provide instant alerts to your phone for key buy/sell price levels and weekly email updates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             
 
             
