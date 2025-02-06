@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import ChartComponent from "../tv";
 import ReactMarkdown from "react-markdown";
 import Papa from "papaparse";
+import ArticlesSection from "./ArticlesSection";
+import SignalTable from "./SignalTable";
 
 type Signal = {
     name: string;
@@ -125,72 +127,16 @@ const Hero: React.FC = () => {
                     <img src="pics/indicators_dashboard.png" alt="Indicators Dashboard" className="h-[400px] object-cover" />
                 </div>
                 <div className="w-1/2 flex flex-col items-center">
-                    <h2 className="text-xl font-bold text-center mb-4">Aerthos Opinion</h2>
-                    {/* Switch Button */}
-                    <div className="flex space-x-4 my-4">
-                        <button
-                            onClick={() => setActiveTab("indicators")}
-                            className={`px-4 py-2 rounded-full ${activeTab === "indicators" ? "bg-blue-500 text-white" : "border border-gray-400"}`}
-                        >
-                            Indicators
-                        </button>
-                        <button
-                            onClick={() => setActiveTab("suggestions")}
-                            className={`px-4 py-2 rounded-full ${activeTab === "suggestions" ? "bg-blue-500 text-white" : "border border-gray-400"}`}
-                        >
-                            Suggestions
-                        </button>
-                    </div>
-
-                    {/* Content Display Area */}
-                    {activeTab === "indicators" ? (
-                        <div className="w-1/2">
-                            
-                            <table className="table-auto border-collapse border border-gray-400 text-left w-full">
-                                <tbody>
-                                    <tr>
-                                        <td className="border border-gray-400 px-4 py-1 font-bold" colSpan={2}>Composite Indicator</td>
-                                    </tr>
-                                    {signals.filter(signal => signal.type === "composite").map((signal, index) => (
-                                        <tr key={index}>
-                                            <td className="px-4 py-1">{signal.name}</td>
-                                            <td className={`px-4 py-1 ${signal.value === "Buy" ? "text-green-500" : signal.value === "Sell" ? "text-red-500" : ""}`}>{signal.value}</td>
-                                        </tr>
-                                    ))}
-                                    <tr>
-                                        <td className="border border-gray-400 px-4 py-1 font-bold" colSpan={2}>Short Term Indicators</td>
-                                    </tr>
-                                    {signals.filter(signal => signal.type === "short-term").map((signal, index) => (
-                                        <tr key={index}>
-                                            <td className="px-4 py-1">{signal.name}</td>
-                                            <td className={`px-4 py-1 ${signal.value === "Buy" ? "text-green-500" : signal.value === "Sell" ? "text-red-500" : ""}`}>{signal.value}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    ) : (
-                        <div className="mt-4 w-full px-4">
-                            <h1 className="text-2xl font-bold text-center">Suggestions</h1>
-                            <ReactMarkdown>{suggestions || "Loading suggestions..."}</ReactMarkdown>
-                        </div>
-                    )}
-                        </div>
-                    </div>
-            
-            <div className="mt-8 w-full px-8">
-                <h2 className="text-xl font-bold text-center mb-4">News Articles</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {articles.map((article, index) => (
-                        <div key={index} className="border border-gray-300 rounded-lg p-4 shadow-sm">
-                            <h3 className="text-lg font-semibold text-blue-600 hover:underline">
-                                <a href={article.link} target="_blank" rel="noopener noreferrer">{article.title}</a>
-                            </h3>
-                            <p className="text-sm text-gray-600 mt-1">By {article.author} - {article.date}</p>
-                        </div>
-                    ))}
+                    <SignalTable
+                        signals={signals}
+                        suggestions={suggestions}
+                        activeTab={activeTab}
+                        setActiveTab={setActiveTab}
+                    />
                 </div>
             </div>
+            
+            <ArticlesSection articles={articles} />
             
 
             <button
