@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
     return (
         
         <div className="flex flex-col justify-center  gap-6 w-full">
-            <div className="relative w-full h-[300px]">
+            <div className="relative w-full h-[500px]">
                 <img src="pics/forest.jpg" alt="forest" className="w-full h-full object-cover" />
                 <h1 className="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold drop-shadow-lg">
                 To the future where sustainability drives global prosperity
