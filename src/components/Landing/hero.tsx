@@ -241,7 +241,7 @@ const Hero: React.FC = () => {
 
             <div className="my-6"></div>
             <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-16">For Subscribers</h2>
-            <div className="my-6"></div> 
+           
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 px-16 py-12 bg-white">
 
                 {/* Firt part */}
