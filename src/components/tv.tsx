@@ -10,7 +10,6 @@ interface CandleData {
   high: number;
   low: number;
   close: number;
-  volume: number;
 }
 
 
@@ -29,17 +28,16 @@ export default function ChartComponent() {
         
         const formattedData: CandleData[] = parsedData
           .map((row) => {
-            if (!row || !row.date || typeof row.date !== 'string') {
+            if (!row || !row.Date || typeof row.Date !== 'string') {
               return null;  
             }
         
             return {
-              time: row.date,
-              open: row.open_bid ?? 0,
-              high: row.high_bid ?? 0,
-              low: row.low_bid ?? 0,
-              close: row.close_bid ?? 0,
-              volume: row.lastTradedVolume ?? 0,
+              time: row.Date,
+              open: row.Open ?? 0,
+              high: row.High ?? 0,
+              low: row.Low ?? 0,
+              close: row.Close ?? 0,
             };
           })
           .filter((item) => item !== null); 
