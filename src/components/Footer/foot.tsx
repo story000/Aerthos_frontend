@@ -16,14 +16,14 @@ const Footer: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-lg flex items-center justify-between w-[90%] max-w-4xl p-6 mb-4">
                 {/* Left logo and word */}
                 <div className="flex items-center gap-4">
-                    <img src="ele/logo.jpg" alt="IFTTT Pro" className="h-10" />
+                    <img src="ele/logo.jpg" alt="IFTTT Pro" className="h-20" />
                     {/* <span className="bg-black text-white text-sm font-bold px-2 py-1 rounded-lg">Pro+</span> */}
                 </div>
 
-                {/* 中间标题文字 */}
+                {/* Middle title */}
                 <h2 className="text-2xl font-bold text-gray-800">The leading climate finance platform</h2>
 
-                {/* 右侧按钮 */}
+                {/* Right button */}
                 <button className="bg-black text-white text-lg font-medium px-6 py-2 rounded-full hover:bg-gray-700 transition duration-300"
                     onClick={() => setShowModal(true)}
                     >
@@ -34,12 +34,12 @@ const Footer: React.FC = () => {
 
             <footer className="w-full bg-black text-white py-8 px-4 md:px-16">
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
-                    {/* 第一列 */}
+                    {/* First column */}
                     <div>
                         <p className="text-sm">©Aerthos {new Date().getFullYear()}</p>
                     </div>
 
-                    {/* 第二列 */}
+                    {/* Second column */}
                     <div className="space-y-2">
                         <p className="font-medium">Learn</p>
                         <ul className="space-y-1">
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
 
-                    {/* 第三列 */}
+                    {/* Third column */}
                     <div className="space-y-2">
                         <p className="font-medium">Contact</p>
                         <ul className="space-y-1">
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
 
-                    {/* 第四列 */}
+                    {/* Fourth column */}
                     <div className="space-y-2">
                         <p className="font-medium">Privacy</p>
                         <ul className="space-y-1">
