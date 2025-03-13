@@ -8,11 +8,10 @@ export const dynamic = "force-dynamic"
 export default function Home() {
   return (
     <div className="lg:py-0 hero min-h-full bg-inherit">
-    {/* <NavBar /> */}
+    <NavBar /> 
     <Hero />
     <Footer /> 
     </div>  
   );
-  
-
 }
+
