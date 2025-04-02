@@ -26,7 +26,7 @@ Date,Composite_Signal,7_Day_ADI_Signal,10_8_Day_Hilo_Channel_Signal,20_Day_MA_vs
 02/05/2025,Hold,Hold,Hold,Buy,Hold,Hold
 02/06/2025,Hold,Hold,Hold,Buy,Hold,Hold
 02/07/2025,Hold,Hold,Hold,Buy,Hold,Hold
-02/10/2025,Hold,Buy,Hold,Buy,Hold,Hold
+02/10/2025,Sell,Buy,Hold,Buy,Hold,Hold
 02/11/2025,Hold,Hold,Hold,Buy,Hold,Hold
 02/12/2025,Hold,Sell,Hold,Sell,Hold,Hold
 02/13/2025,Hold,Sell,Hold,Sell,Hold,Buy
@@ -54,3 +54,13 @@ Date,Composite_Signal,7_Day_ADI_Signal,10_8_Day_Hilo_Channel_Signal,20_Day_MA_vs
 03/17/2025,Hold,Buy,Hold,Sell,Sell,Hold
 03/18/2025,Hold,Buy,Hold,Buy,Sell,Hold
 03/19/2025,Hold,Buy,Hold,Buy,Sell,Hold
+03/20/2025,Hold,Buy,Hold,Buy,Sell,Hold
+03/21/2025,Hold,Hold,Hold,Buy,Sell,Hold
+03/24/2025,Hold,Hold,Hold,Buy,Sell,Hold
+03/25/2025,Hold,Sell,Hold,Sell,Sell,Hold
+03/26/2025,Hold,Hold,Hold,Buy,Sell,Hold
+03/27/2025,Hold,Sell,Hold,Sell,Sell,Hold
+03/28/2025,Hold,Sell,Hold,Sell,Sell,Hold
+03/31/2025,Hold,Sell,Hold,Sell,Sell,Hold
+04/01/2025,Hold,Hold,Hold,Buy,Sell,Hold
+04/02/2025,Hold,Sell,Hold,Sell,Sell,Hold
