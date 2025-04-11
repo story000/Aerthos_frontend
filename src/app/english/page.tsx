@@ -32,35 +32,37 @@ export default function ResearchPage() {
 
   useEffect(() => {
     if (!audioEnabled) return
-
+  
+    let timeoutId: ReturnType<typeof setTimeout>
     const cycle = () => {
-      // 播放引导音频
-      if (introAudioRef.current) {
-        introAudioRef.current.currentTime = 0
-        introAudioRef.current.play()
+      const audioElement = introAudioRef.current as HTMLAudioElement | null;
+      if (audioElement) {
+        audioElement.currentTime = 0;
+        audioElement.play();
       }
-
-      // 显示拼写提示，隐藏答案
+  
       setShowAnswer(false)
-
-      // 切换图片索引
       setCurrentIndex((prev) => (prev + 1) % wordPairs.length)
-
-      // 2 秒后显示完整答案并播放发音
-      setTimeout(() => {
+  
+      timeoutId = setTimeout(() => {
         setShowAnswer(true)
-        if (wordAudioRef.current) {
-          wordAudioRef.current.currentTime = 0
-          wordAudioRef.current.play()
+        const audioElement = wordAudioRef.current as HTMLAudioElement | null;
+        if (audioElement) {
+          audioElement.currentTime = 0;
+          audioElement.play();
         }
       }, 5000)
     }
-
-    cycle() // 初始立即执行一次
-    const interval = setInterval(cycle, 7000)
-
-    return () => clearInterval(interval)
+  
+    cycle()
+    const intervalId = setInterval(cycle, 8000)
+  
+    return () => {
+      clearInterval(intervalId)
+      clearTimeout(timeoutId)
+    }
   }, [audioEnabled])
+  
 
   const currentWord = wordPairs[currentIndex].word
 
