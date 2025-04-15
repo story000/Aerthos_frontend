@@ -212,7 +212,7 @@ const Hero: React.FC = () => {
                 </div>
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Upcoming Forecast</h1>
-                    <img src="http://localhost:8000/static/predictions_plot.png" alt="Trade Decision" className="w-full h-auto object-cover" />
+                    <img src="http://18.117.159.59:8000/static/predictions_plot.png" alt="Trade Decision" className="w-full h-auto object-cover" />
                 </div>
             </div>
 
@@ -222,7 +222,7 @@ const Hero: React.FC = () => {
             <div className="flex justify-between w-full px-4 md:px-16">
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Indicators Dashboard</h1>
-                    <img src="http://localhost:8000/static/indicators_dashboard.png" alt="Indicators Dashboard" className="w-full h-auto object-cover" />
+                    <img src="http://18.117.159.59:8000/static/indicators_dashboard.png" alt="Indicators Dashboard" className="w-full h-auto object-cover" />
                 </div>
                 <div className="w-1/2 flex flex-col items-center">
                     <SignalTable

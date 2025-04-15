@@ -19,7 +19,7 @@ export default function ChartComponent() {
 
 
   useEffect(() => {
-    fetch('http://localhost:8000/data/carbon/')
+    fetch('http://18.117.159.59:8000/data/carbon/')
       .then(response => response.json())
       .then((parsedData: any[]) => {
         const formattedData: CandleData[] = parsedData
