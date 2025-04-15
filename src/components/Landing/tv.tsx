@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { createChart,CandlestickSeries, ColorType  } from 'lightweight-charts';
+import { createChart, CandlestickSeries, ColorType } from 'lightweight-charts';
 import Papa from 'papaparse';
 
 interface CandleData {
@@ -16,36 +16,32 @@ interface CandleData {
 export default function ChartComponent() {
   const [data, setData] = useState<CandleData[]>([]);
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  
+
 
   useEffect(() => {
-    Papa.parse('/data/latest_price.csv', {
-      download: true,
-      header: true,
-      dynamicTyping: true,
-      complete: (result: Papa.ParseResult<any>) => {
-        const parsedData = result.data as any[];
-        
+    fetch('http://localhost:8000/data/carbon/')
+      .then(response => response.json())
+      .then((parsedData: any[]) => {
         const formattedData: CandleData[] = parsedData
           .map((row) => {
             if (!row || !row.Date || typeof row.Date !== 'string') {
-              return null;  
+              return null;
             }
-        
+
             return {
               time: row.Date,
               open: row.Open ?? 0,
               high: row.High ?? 0,
               low: row.Low ?? 0,
-              close: row.Close ?? 0,
+              close: row.Price ?? 0, // 使用 Price 作为收盘价
             };
           })
-          .filter((item) => item !== null); 
+          .filter((item) => item !== null);
 
         setData(formattedData);
         console.log("formattedData", formattedData);
-      },
-    });
+      })
+      .catch(error => console.error("Error fetching data:", error));
   }, []);
 
   useEffect(() => {
@@ -54,7 +50,7 @@ export default function ChartComponent() {
     const chartOptions = {
       layout: {
         textColor: 'black',
-        background: { type:  ColorType.Solid, color: 'white' },
+        background: { type: ColorType.Solid, color: 'white' },
       },
     };
     const chart = createChart(chartContainerRef.current, chartOptions);
@@ -76,7 +72,7 @@ export default function ChartComponent() {
       close: item.close,
     })));
 
-    
+
     chart.timeScale().fitContent();
 
     return () => chart.remove();

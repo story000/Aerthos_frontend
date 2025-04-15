@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(true);
 
-    
+
     useEffect(() => {
         const timeout = setTimeout(() => setLoading(false), 2000);
         fetchSuggestions();
@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
 
         return () => clearTimeout(timeout);
 
-        
+
     }, []);
 
     const fetchSuggestions = async () => {
@@ -62,13 +62,13 @@ const Hero: React.FC = () => {
             Papa.parse(csvData, {
                 header: true,
                 complete: (result) => {
-                    const lastRow = result.data[result.data.length - 2] as { 
-                        Composite_Signal?: string; 
-                        "7_Day_ADI_Signal"?: string; 
-                        "10_8_Day_Hilo_Channel_Signal"?: string; 
-                        "20_Day_MA_vs_Price_Signal"?: string; 
-                        "20-50_MA_Crossover_Signal"?: string; 
-                        "Bollinger_Bands_Signal"?: string; 
+                    const lastRow = result.data[result.data.length - 2] as {
+                        Composite_Signal?: string;
+                        "7_Day_ADI_Signal"?: string;
+                        "10_8_Day_Hilo_Channel_Signal"?: string;
+                        "20_Day_MA_vs_Price_Signal"?: string;
+                        "20-50_MA_Crossover_Signal"?: string;
+                        "Bollinger_Bands_Signal"?: string;
                     };
                     const formattedSignals = [
                         { name: "Composite Signal", value: lastRow.Composite_Signal || "Hold", type: "composite" },
@@ -96,7 +96,7 @@ const Hero: React.FC = () => {
                 header: true,
                 complete: (result) => {
                     const formattedArticles = result.data
-                        .filter((row: any) => row.link.includes("https://")) 
+                        .filter((row: any) => row.link.includes("https://"))
                         .map((row: any) => ({
                             link: row.link,
                             title: row.title,
@@ -122,23 +122,23 @@ const Hero: React.FC = () => {
 
 
     return (
-        
+
         <div className="flex flex-col justify-center  gap-6 w-full">
             <div className="relative w-full h-[500px]">
                 <img src="pics/forest.jpg" alt="forest" className="w-full h-full object-cover" />
                 <h1 className="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold drop-shadow-lg">
-                To the future where sustainability drives global prosperity
+                    To the future where sustainability drives global prosperity
                 </h1>
             </div>
 
             <div className="my-6"></div>
             <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-center leading-snug">
                 <p className="px-[20%]">
-                    Aerthos <strong className="text-[20px]">is a climate finance and technology startup dedicated to bridging the climate finance gap 
-                    by providing innovative tools for carbon compliance, risk mitigation, and financial empowerment.</strong>
+                    Aerthos <strong className="text-[20px]">is a climate finance and technology startup dedicated to bridging the climate finance gap
+                        by providing innovative tools for carbon compliance, risk mitigation, and financial empowerment.</strong>
                 </p>
             </h2>
-            
+
             <div className="my-6"></div>
             <div className="my-6"></div>
             <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-16">Our services</h2>
@@ -164,8 +164,8 @@ const Hero: React.FC = () => {
                     <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
                         <h2 className="text-2xl font-bold">Investment Adviser</h2>
                         <p className="mt-2 text-sm">
-                        Empower businesses and investors with tools that simplify carbon compliance, mitigate 
-                        financial risks, and unlock the potential of the carbon economy. 
+                            Empower businesses and investors with tools that simplify carbon compliance, mitigate
+                            financial risks, and unlock the potential of the carbon economy.
                         </p>
                         <a href="#" className="mt-4 font-semibold underline">Read More</a>
                     </div>
@@ -178,8 +178,8 @@ const Hero: React.FC = () => {
                     <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
                         <h2 className="text-2xl font-bold">All-in-One Platform</h2>
                         <p className="mt-2 text-sm">
-                        Bridge the global climate finance gap by creating transformative platforms for industries, 
-                        governments, and individuals.
+                            Bridge the global climate finance gap by creating transformative platforms for industries,
+                            governments, and individuals.
                         </p>
                         <a href="#" className="mt-4 font-semibold underline">Read More</a>
                     </div>
@@ -201,7 +201,7 @@ const Hero: React.FC = () => {
 
             <div className="my-6"></div>
             <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-16">Free Version</h2>
-            <div className="my-6"></div> 
+            <div className="my-6"></div>
 
             <h1 className="text-3xl font-bold font-mono  px-4 md:px-16">Carbon Price & Predictions </h1>
 
@@ -212,17 +212,17 @@ const Hero: React.FC = () => {
                 </div>
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Upcoming Forecast</h1>
-                    <img src="pics/predictions_plot.png" alt="Trade Decision" className="w-full h-auto object-cover" />
+                    <img src="http://localhost:8000/static/predictions_plot.png" alt="Trade Decision" className="w-full h-auto object-cover" />
                 </div>
-            </div>  
-            
+            </div>
+
             <div className="my-6"></div>
             <h1 className="text-3xl font-bold font-mono  px-4 md:px-16">Indicators & Suggestions</h1>
 
             <div className="flex justify-between w-full px-4 md:px-16">
                 <div className="w-1/2 flex flex-col items-center">
                     <h1 className="text-2xl font-bold text-center">Indicators Dashboard</h1>
-                    <img src="pics/indicators_dashboard.png" alt="Indicators Dashboard" className="w-full h-auto object-cover" />
+                    <img src="http://localhost:8000/static/indicators_dashboard.png" alt="Indicators Dashboard" className="w-full h-auto object-cover" />
                 </div>
                 <div className="w-1/2 flex flex-col items-center">
                     <SignalTable
@@ -233,15 +233,15 @@ const Hero: React.FC = () => {
                     />
                 </div>
             </div>
-            
-           
+
+
 
             <ArticlesSection articles={articles} />
             <div className="my-6"></div>
 
             <div className="my-6"></div>
             <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-left leading-snug px-4 md:px-16">For Subscribers</h2>
-           
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 px-16 py-12 bg-white">
 
                 {/* Firt part */}
@@ -253,7 +253,7 @@ const Hero: React.FC = () => {
                     <div>
                         <h3 className="text-2xl font-bold mb-4">Dynamic Forecast Updates</h3>
                         <p>
-                        Access the most up-to-date and comprehensive market data, including real-time stock prices, financial news, and in-depth analysis to help you make informed investment decisions.
+                            Access the most up-to-date and comprehensive market data, including real-time stock prices, financial news, and in-depth analysis to help you make informed investment decisions.
                         </p>
                     </div>
                 </div>
@@ -263,7 +263,7 @@ const Hero: React.FC = () => {
                     <div>
                         <h3 className="text-2xl font-bold mb-4">Personalized Buy/Sell Signals</h3>
                         <p>
-                        Customize buy/sell signals based your risk appetite and investment timeframe.
+                            Customize buy/sell signals based your risk appetite and investment timeframe.
                         </p>
                     </div>
                 </div>
@@ -281,15 +281,15 @@ const Hero: React.FC = () => {
                     <div>
                         <h3 className="text-2xl font-bold mb-4">Push Notifications</h3>
                         <p>
-                         Provide instant alerts to your phone for key buy/sell price levels and weekly email updates.
+                            Provide instant alerts to your phone for key buy/sell price levels and weekly email updates.
                         </p>
                     </div>
                 </div>
             </div>
 
-            
 
-            
+
+
         </div>
     );
 };
